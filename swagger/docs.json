@@ -1,0 +1,100 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "REST API documentation",
+        "version": "0.1",
+        "title": "Getir records"
+    },
+    "host": "localhost:8000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "records",
+            "description": "Everything related to records"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/api/records": {
+            "post": {
+                "tags": [
+                    "records"
+                ],
+                "summary": "fetch records",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "minCount",
+                        "required": true,
+                        "type":"integer",
+                        "description": "filters to apply on record's createdAt date and counts sum",
+                        "schema":{
+                            "type": "object",
+                            "properties":
+                            {
+                                "startDate":  {
+                                    "type": "string"
+                                },
+                                "endDate":  {
+                                    "type": "string"
+                                },
+                                "minCount":  {
+                                    "type": "integer"
+                                },
+                                "maxCount":  {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/records"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "records": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "required": true
+                },
+                "counts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "required": true
+                    }
+                },
+                "CreatedAt": {
+                    "type": "date",
+                    "required": true
+                },
+                "value": {
+                    "type": "string",
+                    "required": true
+                }
+            },
+            "xml": {
+                "name": "records"
+            }
+        }
+    }
+}
