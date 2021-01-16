@@ -79,7 +79,7 @@
                 "counts": {
                     "type": "array",
                     "items": {
-                        "type": "string",
+                        "type": "integer",
                         "required": true
                     }
                 },
